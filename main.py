@@ -7,10 +7,9 @@ URL = "https://web.archive.org/web/20200518073855/https://www.empireonline.com/m
 # Write your code below this line 👇
 
 response = requests.get(URL)
-# print(response.encoding)
 response.encoding = "utf-8"
 content = response.text
-# print(content)
+
 
 soup = BeautifulSoup(content, "html.parser")
 
@@ -30,10 +29,10 @@ for movie_name in movies:
     except IndexError:
         movie_tups = movie_name.split(":")[1].strip()
     title_list.append(movie_tups)
-    # print(movie_tups)
+
 
 sorted_list = reversed(title_list)
-# print(sorted_list)
+
 
 start = 1
 with open("movies.txt", mode="w") as file:
@@ -41,8 +40,3 @@ with open("movies.txt", mode="w") as file:
         formatted_title = f"{start}) {title_name}\n"
         file.write(f"{formatted_title}")
         start += 1
-
-# for title_name in sorted_list:
-#     formatted_title = f"{start}) {title_name}\n"
-#     print(formatted_title)
-#     start += 1
